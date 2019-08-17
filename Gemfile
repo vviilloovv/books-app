@@ -58,3 +58,6 @@ gem "slim-rails"
 
 # 画像アップロード用gem
 gem "carrierwave"
+
+# rubocop
+gem "rubocop", require: false
