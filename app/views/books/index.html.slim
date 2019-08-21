@@ -3,10 +3,10 @@ h1 Listing books
 table
   thead
     tr
-      th Title
-      th Memo
-      th Author
-      th Picture
+      th = Book.human_attribute_name(:title)
+      th = Book.human_attribute_name(:memo)
+      th = Book.human_attribute_name(:author)
+      th = Book.human_attribute_name(:picture)
       th
 
   tbody
