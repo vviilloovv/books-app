@@ -65,3 +65,6 @@ gem "carrierwave"
 gem "rubocop", require: false
 gem "rubocop-rails"
 gem "rubocop-performance"
+
+# ページング処理
+gem "kaminari"
