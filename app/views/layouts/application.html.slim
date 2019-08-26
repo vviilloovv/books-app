@@ -5,11 +5,11 @@ html
     = csrf_meta_tags
     = csp_meta_tag
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_pack_tag "application", "data-turbolinks-track": "reload"
 
   body
-    => link_to_if params[:locale] != 'ja', '日本語', url_for(controller: controller.controller_name, action: controller.action_name, locale: 'ja')
-    '|
-    =< link_to_if params[:locale] != 'en', 'English', url_for(controller: controller.controller_name, action: controller.action_name, locale: 'en')
+    => link_to_if params[:locale] != "ja", "日本語", url_for(controller: controller.controller_name, action: controller.action_name, locale: "ja")
+    "|
+    =< link_to_if params[:locale] != "en", "English", url_for(controller: controller.controller_name, action: controller.action_name, locale: "en")
     == yield
