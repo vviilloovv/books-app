@@ -10,7 +10,7 @@ html
 
   body
     => link_to_if params[:locale] != "ja", "日本語", url_for(controller: controller.controller_name, action: controller.action_name, locale: "ja")
-    "|
+    '|
     =< link_to_if params[:locale] != "en", "English", url_for(controller: controller.controller_name, action: controller.action_name, locale: "en")
     - if notice
       p.alert.alert-success = notice
