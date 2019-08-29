@@ -42,6 +42,10 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
+  # rubocop
+  gem "rubocop", require: false
+  gem "rubocop-rails"
+  gem "rubocop-performance"
 end
 
 group :test do
@@ -61,7 +65,5 @@ gem "slim-rails"
 # 画像アップロード用gem
 gem "carrierwave"
 
-# rubocop
-gem "rubocop", require: false
-gem "rubocop-rails"
-gem "rubocop-performance"
+# ページング処理
+gem "kaminari"
