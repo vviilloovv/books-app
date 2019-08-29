@@ -25,6 +25,10 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+        name: ユーザ名
+        postal_code: 郵便番号
+        address: 住所
+        profile: 自己紹介
     models:
       user: ユーザ
   devise:
@@ -101,6 +105,7 @@ ja:
         we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
       new:
         sign_up: アカウント登録
+        password_notice: 文字以上
       signed_up: アカウント登録が完了しました。
       signed_up_but_inactive: ログインするためには、アカウントを有効化してください。
       signed_up_but_locked: アカウントが凍結されているためログインできません。
