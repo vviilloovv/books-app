@@ -61,6 +61,7 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # erbの代わりにSlimを使う
 gem "slim-rails"
+gem "html2slim"
 
 # 画像アップロード用gem
 gem "carrierwave"
