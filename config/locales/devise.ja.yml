@@ -105,6 +105,7 @@ ja:
         we_need_your_current_password_to_confirm_your_changes: 変更を反映するには現在のパスワードを入力してください
       new:
         sign_up: アカウント登録
+        without_hyphen: ハイフンなし
         password_notice: 文字以上
       signed_up: アカウント登録が完了しました。
       signed_up_but_inactive: ログインするためには、アカウントを有効化してください。

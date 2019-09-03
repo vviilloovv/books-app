@@ -26,10 +26,12 @@ h2 ユーザー登録
   .field.f-adr
     span.p-contry-name style="display:none;" Japan
     = f.label :postal_code
+    em
+      | (
+      = t ".without_hyphen"
+      | )
     br
-    = f.text_field :postal_code, class: "p-postal-code", size: "3", maxlength: "3"
-    |-
-    = f.text_field :postal_code, class: "p-postal-code", size: "4", maxlength: "4"
+    = f.text_field :postal_code, class: "p-postal-code", size: "7", maxlength: "7"
     br
     = f.label :address
     br
