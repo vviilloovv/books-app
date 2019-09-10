@@ -2,7 +2,11 @@ h2
   | Edit 
   = resource_name.to_s.humanize
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-  = render "devise/shared/error_messages", resource: resource
+  == render "devise/shared/error_messages", resource: resource
+  .field
+    = f.label :name
+    br
+    = f.text_field :name
   .field
     = f.label :email
     br
@@ -14,14 +18,18 @@ h2
   .field
     = f.label :password
     i
-      | (leave blank if you don't want to change it)
+      | (
+      = t ".leave_blank_if_you_don_t_want_to_change_it"
+      | )
     br
     = f.password_field :password, autocomplete: "new-password"
     - if @minimum_password_length
       br
       em
+        | (
         = @minimum_password_length
-        |  characters minimum
+        = t ".password_notice"
+        | )
   .field
     = f.label :password_confirmation
     br
@@ -29,14 +37,33 @@ h2
   .field
     = f.label :current_password
     i
-      | (we need your current password to confirm your changes)
+      | (
+      = t ".we_need_your_current_password_to_confirm_your_changes"
+      | )
     br
     = f.password_field :current_password, autocomplete: "current-password"
+  .field.f-adr
+    span.p-contry-name style="display:none;" Japan
+    = f.label :postal_code
+    em
+      | (
+      = t ".without_hyphen"
+      | )
+    br
+    = f.text_field :postal_code, class: "p-postal-code", size: "7", maxlength: "7"
+    br
+    = f.label :address
+    br
+    = f.text_field :address, class: "p-region p-locality p-street-address p-extend-address"
+  .field
+    = f.label :profile
+    br
+    = f.text_area :profile, rows: "10"
   .actions
-    = f.submit "Update"
+    = f.submit "更新"
 h3
-  | Cancel my account
+  = t ".cancel_my_account"
 p
-  | Unhappy? 
-  = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
+  = t ".unhappy"
+  = button_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete
 = link_to "Back", :back
