@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  #before_action :configure_sign_up_params, only: [:create]
-  #before_action :configure_account_update_params, only: [:update]
+  # before_action :configure_sign_up_params, only: [:create]
+  # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  #def new
+  # def new
   #  super
-  #end
+  # end
 
   # POST /resource
-  #def create
+  # def create
   #  super
-  #end
+  # end
 
   # GET /resource/edit
   # def edit
@@ -38,24 +38,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  #protected
-  #def permit_attributes
-  #  [:name, :postal_code, :address, :profile]
-  #end
+  protected
+    # The path used after sign up.
+    def after_sign_up_path_for(resource)
+      user_path(id: current_user.id)
+    end
 
-  #def configure_sign_up_params
-  #  devise_parameter_sanitizer.permit(:sign_up, keys: permit_attributes)
-  #end
+  # def permit_attributes
+  #   [:name, :postal_code, :address, :profile]
+  # end
 
-  #def configure_account_update_params
-  #  devise_parameter_sanitizer.permit(:account_update, keys: permit_attributes)
-  #end
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: permit_attributes)
+  # end
 
-
-
-  # The path used after sign up.
-  # def after_sign_up_path_for(resource)
-  #   super(resource)
+  # def configure_account_update_params
+  #   devise_parameter_sanitizer.permit(:account_update, keys: permit_attributes)
   # end
 
   # The path used after sign up for inactive accounts.

@@ -1,0 +1,21 @@
+h1 プロフィール
+p
+  strong = User.human_attribute_name(:name)
+  ':
+  = @user.name
+p
+  strong = User.human_attribute_name(:postal_code)
+  ':
+  = @user.postal_code
+p
+  strong = User.human_attribute_name(:address)
+  ':
+  = @user.address
+p
+  strong = User.human_attribute_name(:profile)
+  ':
+  = @user.profile
+
+=> link_to 'Edit', edit_user_registration_path(@user)
+'|
+=< link_to 'Back', books_path
