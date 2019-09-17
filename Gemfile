@@ -68,3 +68,6 @@ gem "carrierwave"
 
 # ページング処理
 gem "kaminari"
+
+# ユーザー認証
+gem "devise"
