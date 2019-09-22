@@ -16,6 +16,8 @@ AllCops:
     - 'actiontext/test/dummy/**/*'
     - '**/node_modules/**/*'
     - 'bin/*'
+    - 'db/schema.rb'
+    - 'tmp/**/*'
 
 Performance:
   Exclude:
@@ -257,4 +259,3 @@ Performance/ReverseEach:
 
 Performance/UnfreezeString:
   Enabled: true
-
