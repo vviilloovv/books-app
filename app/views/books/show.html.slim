@@ -10,6 +10,10 @@ p
   strong = Book.human_attribute_name(:author)
   ':
   = @book.author
+p
+  strong = Book.human_attribute_name(:image)
+  ':
+  = image_tag @book.image if @book.image.attached?
 
 => link_to 'Edit', edit_book_path(@book)
 '|
