@@ -46,6 +46,8 @@ group :development do
   gem "rubocop", require: false
   gem "rubocop-rails"
   gem "rubocop-performance"
+  # erbをslimに変換
+  gem "html2slim"
 end
 
 group :test do
