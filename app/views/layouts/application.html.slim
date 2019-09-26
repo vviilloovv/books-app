@@ -5,11 +5,31 @@ html
     = csrf_meta_tags
     = csp_meta_tag
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload"
+    = javascript_pack_tag "application", "data-turbolinks-track": "reload"
 
   body
-    => link_to_if params[:locale] != 'ja', '日本語', url_for(controller: controller.controller_name, action: controller.action_name, locale: 'ja')
+    p.navbar-text.pull-right
+      => link_to "本一覧", books_path, class: "navbar-link"
+      '|
+      - if user_signed_in?
+        'Logged in as
+        strong => current_user.email
+        '|
+        =<> link_to "プロフィール表示", user_path(id: current_user.id), class: "navbar-link"
+        '|
+        =<> link_to "プロフィール編集", edit_user_registration_path, class: "navbar-link"
+        '|
+        =< link_to "ログアウト", destroy_user_session_path, method: :delete, class: "navbar-link"
+      - else
+        =<> link_to "ユーザー登録", new_user_registration_path, class: "navbar-link"
+        '|
+        =< link_to "ログイン", new_user_session_path, class: "navbar-link"
+    => link_to_if params[:locale] != "ja", "日本語", url_for(controller: controller.controller_name, action: controller.action_name, locale: "ja")
     '|
-    =< link_to_if params[:locale] != 'en', 'English', url_for(controller: controller.controller_name, action: controller.action_name, locale: 'en')
+    =< link_to_if params[:locale] != "en", "English", url_for(controller: controller.controller_name, action: controller.action_name, locale: "en")
+    - if notice
+      p.alert.alert-success = notice
+    - if alert
+      p.alert.alert-danger = alert
     == yield
