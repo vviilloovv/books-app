@@ -69,3 +69,6 @@ gem "kaminari"
 
 # ユーザー認証
 gem "devise"
+gem "omniauth"
+gem "omniauth-github"
+gem "dotenv-rails"
