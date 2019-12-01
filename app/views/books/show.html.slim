@@ -1,4 +1,8 @@
 p
+  strong = User.human_attribute_name(:name)
+  ':
+  = User.find(@book.user_id).name
+p
   strong = Book.human_attribute_name(:title)
   ':
   = @book.title

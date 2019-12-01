@@ -3,6 +3,7 @@ h1 Listing books
 table
   thead
     tr
+      th = User.human_attribute_name(:name)
       th = Book.human_attribute_name(:title)
       th = Book.human_attribute_name(:memo)
       th = Book.human_attribute_name(:author)
@@ -12,6 +13,7 @@ table
   tbody
     - @books.each do |book|
       tr
+        td = User.find(book.user_id).name
         td = book.title
         td = book.memo
         td = book.author
