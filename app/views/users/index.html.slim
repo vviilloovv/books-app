@@ -1,0 +1,17 @@
+h1 ユーザ一覧
+
+table
+  thead
+    tr
+      th
+      th = User.human_attribute_name(:name)
+      th
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = image_tag user.icon, size: "30x30" if user.icon.attached?
+        td = user.name
+        td
+= paginate @users
+br

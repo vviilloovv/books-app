@@ -8,6 +8,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one_attached :icon
   has_many :books
+  paginates_per 7
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
