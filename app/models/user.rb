@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :books
   paginates_per 7
 
+  has_many :relationships
+  has_many :followings, through: :relationships, source: :follow
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i(github)
