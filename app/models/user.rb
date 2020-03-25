@@ -17,6 +17,21 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i(github)
 
+  def follow(user)
+    unless self == user
+      self.relationships.find_or_create_by(follow_id: user.id)
+    end
+  end
+
+  def unfollow(user)
+    relationship = self.relationships.find_by(follow_id: user.id)
+    relationship.destroy if relationship
+  end
+
+  def following?(user)
+    self.followings.include?(user)
+  end
+
   def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)
     if user
