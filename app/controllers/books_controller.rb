@@ -2,6 +2,7 @@
 
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
@@ -75,5 +76,9 @@ class BooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:title, :memo, :author, :image)
+    end
+
+    def check_user
+      redirect_to books_url, notice: "Illegal request." unless current_user.id == @book.user_id
     end
 end

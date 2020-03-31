@@ -19,9 +19,9 @@ table
         td = book.author
         td = book.image if book.image.attached?
         td = link_to 'Show', book
-        td = link_to 'Edit', edit_book_path(book)
-        td = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+        - if current_user.id == book.user_id
+          td = link_to 'Edit', edit_book_path(book)
+          td = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
 = paginate @books
-br
 
 = link_to 'New Book', new_book_path
