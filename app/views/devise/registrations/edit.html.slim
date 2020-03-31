@@ -70,4 +70,4 @@ h3
 p
   = t ".unhappy"
   = button_to t(".cancel_my_account"), registration_path(resource_name), data: { confirm: t(".are_you_sure") }, method: :delete
-= link_to "Back", :back
+= link_to "Back", "javascript:history.back()"
