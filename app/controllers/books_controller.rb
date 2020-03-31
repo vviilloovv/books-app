@@ -6,7 +6,10 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = current_user.books.page(params[:page])
+    user_ids = current_user.followings.each_with_object([current_user.id]) do |following, ids|
+      ids << following.id
+    end
+    @books = Book.where(user_id: user_ids).order(created_at: "DESC").page(params[:page])
   end
 
   # GET /books/1
