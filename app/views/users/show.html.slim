@@ -23,7 +23,7 @@ p
   = @user.profile
 
 - if current_user.id == @user.id
-  => link_to 'Edit', edit_user_registration_path
+  => link_to "Edit", edit_user_registration_path
 
 h2 投稿一覧
 
@@ -43,10 +43,10 @@ table
         td = book.memo
         td = book.author
         td = book.image if book.image.attached?
-        td = link_to 'Show', book
+        td = link_to "Show", book
         - if current_user.id == book.user_id
-          td = link_to 'Edit', edit_book_path(book)
-          td = link_to 'Destroy', book, data: { confirm: 'Are you sure?' }, method: :delete
+          td = link_to "Edit", edit_book_path(book)
+          td = link_to "Destroy", book, data: { confirm: "Are you sure?" }, method: :delete
 = paginate @books
 
 =< link_to "Back", "javascript:history.back()"
