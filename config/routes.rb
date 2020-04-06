@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   }
   scope "(:locale)" do
     resources :books
+    resources :reports
     devise_for :users, skip: :omniauth_callbacks, controllers: {
       registrations: "users/registrations",
       sessions: "users/sessions",
