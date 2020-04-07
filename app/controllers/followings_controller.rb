@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FollowingsController < ApplicationController
-  before_action :set_user
+  before_action :login_required, :set_user
 
   def create
     follower = current_user.follow(@user)

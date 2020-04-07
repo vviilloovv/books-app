@@ -3,7 +3,10 @@
 class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :login_required
+
+  def login_required
+    redirect_to new_user_session_path unless current_user
+  end
 
   protected
     def configure_permitted_parameters
@@ -18,9 +21,5 @@ class ApplicationController < ActionController::Base
 
     def default_url_options
       { locale: I18n.locale }
-    end
-
-    def login_required
-      redirect_to new_user_session_path unless current_user
     end
 end

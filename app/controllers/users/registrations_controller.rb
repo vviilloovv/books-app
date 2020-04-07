@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  skip_before_action :login_required
   def build_resource(hash = {})
     hash[:uid] = User.create_unique_string
     super
