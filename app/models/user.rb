@@ -10,8 +10,8 @@ class User < ApplicationRecord
   has_many :books
   paginates_per 7
 
-  has_many :relationships
-  has_many :followings, through: :relationships, source: :follow
+  has_many :followings
+  has_many :followers, through: :followings, source: :follow
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
@@ -19,17 +19,17 @@ class User < ApplicationRecord
 
   def follow(user)
     unless self == user
-      self.relationships.find_or_create_by(follow_id: user.id)
+      self.followings.find_or_create_by(follow_id: user.id)
     end
   end
 
   def unfollow(user)
-    relationship = self.relationships.find_by(follow_id: user.id)
-    relationship.destroy if relationship
+    following = self.followings.find_by(follow_id: user.id)
+    following.destroy if following
   end
 
   def following?(user)
-    self.followings.include?(user)
+    self.followers.include?(user)
   end
 
   def self.from_omniauth(auth)
