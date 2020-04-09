@@ -3,11 +3,12 @@
 class ReportsController < ApplicationController
   before_action :login_required
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    @reports = Report.where(user_id: follower_ids).order(created_at: "DESC").page(params[:page])
   end
 
   # GET /reports/1
@@ -73,5 +74,9 @@ class ReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
       params.require(:report).permit(:title, :content)
+    end
+
+    def check_user
+      redirect_to reports_url, notice: "Illegal request." unless current_user.id == @report.user_id
     end
 end

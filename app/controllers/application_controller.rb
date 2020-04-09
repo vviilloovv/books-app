@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path unless current_user
   end
 
+  def follower_ids
+    current_user.followers.each_with_object([current_user.id]) do |follower, ids|
+      ids << follower.id
+    end
+  end
+
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :postal_code, :address, :profile, :icon])
