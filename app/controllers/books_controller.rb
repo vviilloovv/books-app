@@ -8,10 +8,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    user_ids = current_user.followers.each_with_object([current_user.id]) do |follower, ids|
-      ids << follower.id
-    end
-    @books = Book.where(user_id: user_ids).order(created_at: "DESC").page(params[:page])
+    @books = Book.where(user_id: follower_ids).order(created_at: "DESC").page(params[:page])
   end
 
   # GET /books/1
