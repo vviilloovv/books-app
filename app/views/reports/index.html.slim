@@ -3,8 +3,8 @@ h1 Listing reports
 table
   thead
     tr
-      th Title
-      th Content
+      th = Report.human_attribute_name(:title)
+      th = Report.human_attribute_name(:content)
       th
       th
       th
