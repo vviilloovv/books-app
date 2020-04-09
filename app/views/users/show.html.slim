@@ -8,6 +8,7 @@ p
     strong = User.human_attribute_name(:icon)
     ':
     = image_tag @user.icon, size: "300x300"
+p = render "followings/follow_button", user: @user
 p
   strong = User.human_attribute_name(:postal_code)
   ':
@@ -21,6 +22,31 @@ p
   ':
   = @user.profile
 
-=> link_to 'Edit', edit_user_registration_path(@user)
-'|
-=< link_to 'Back', books_path
+- if current_user.id == @user.id
+  => link_to "Edit", edit_user_registration_path
+
+h2 投稿一覧
+
+table
+  thead
+    tr
+      th = Book.human_attribute_name(:title)
+      th = Book.human_attribute_name(:memo)
+      th = Book.human_attribute_name(:author)
+      th = Book.human_attribute_name(:image)
+      th
+
+  tbody
+    - @books.each do |book|
+      tr
+        td = book.title
+        td = book.memo
+        td = book.author
+        td = book.image if book.image.attached?
+        td = link_to "Show", book
+        - if current_user.id == book.user_id
+          td = link_to "Edit", edit_book_path(book)
+          td = link_to "Destroy", book, data: { confirm: "Are you sure?" }, method: :delete
+= paginate @books
+
+=< link_to "Back", "javascript:history.back()"

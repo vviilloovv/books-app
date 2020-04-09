@@ -7,9 +7,30 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one_attached :icon
+  has_many :books
+  paginates_per 7
+
+  has_many :followings
+  has_many :followers, through: :followings, source: :follow
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i(github)
+
+  def follow(user)
+    unless self == user
+      self.followings.find_or_create_by(follow_id: user.id)
+    end
+  end
+
+  def unfollow(user)
+    following = self.followings.find_by(follow_id: user.id)
+    following.destroy if following
+  end
+
+  def following?(user)
+    self.followers.include?(user)
+  end
 
   def self.from_omniauth(auth)
     user = User.find_by(email: auth.info.email)

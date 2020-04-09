@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       registrations: "users/registrations",
       sessions: "users/sessions",
     }
-    resources :users, only: [:show]
+    resources :users, only: [:index, :show]
+    resources :followings, only: [:create, :destroy]
   end
   root to: "books#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

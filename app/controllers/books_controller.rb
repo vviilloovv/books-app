@@ -1,12 +1,17 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
+  before_action :login_required
   before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :check_user, only: [:edit, :update, :destroy]
 
   # GET /books
   # GET /books.json
   def index
-    @books = Book.page(params[:page])
+    user_ids = current_user.followers.each_with_object([current_user.id]) do |follower, ids|
+      ids << follower.id
+    end
+    @books = Book.where(user_id: user_ids).order(created_at: "DESC").page(params[:page])
   end
 
   # GET /books/1
@@ -26,7 +31,7 @@ class BooksController < ApplicationController
   # POST /books
   # POST /books.json
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.new(book_params)
 
     respond_to do |format|
       if @book.save
@@ -58,7 +63,7 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
+      format.html { redirect_back(fallback_location: books_url, notice: "Book was successfully destroyed.") }
       format.json { head :no_content }
     end
   end
@@ -72,5 +77,9 @@ class BooksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
       params.require(:book).permit(:title, :memo, :author, :image)
+    end
+
+    def check_user
+      redirect_to books_url, notice: "Illegal request." unless current_user.id == @book.user_id
     end
 end

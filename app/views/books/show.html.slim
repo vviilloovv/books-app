@@ -1,4 +1,8 @@
 p
+  strong = User.human_attribute_name(:name)
+  ':
+  = User.find(@book.user_id).name
+p
   strong = Book.human_attribute_name(:title)
   ':
   = @book.title
@@ -15,6 +19,7 @@ p
   ':
   = image_tag @book.image if @book.image.attached?
 
-=> link_to 'Edit', edit_book_path(@book)
-'|
-=< link_to 'Back', books_path
+-if current_user.id == @book.user_id
+  => link_to "Edit", edit_book_path(@book)
+  '|
+=< link_to "Back", "javascript:history.back()"
