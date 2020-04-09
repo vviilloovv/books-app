@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class ReportsController < ApplicationController
+  before_action :login_required
   before_action :set_report, only: [:show, :edit, :update, :destroy]
 
   # GET /reports
@@ -24,7 +27,7 @@ class ReportsController < ApplicationController
   # POST /reports
   # POST /reports.json
   def create
-    @report = Report.new(report_params)
+    @report = current_user.reports.new(report_params)
 
     respond_to do |format|
       if @report.save
