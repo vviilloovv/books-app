@@ -23,3 +23,7 @@ p
   => link_to "Edit", edit_book_path(@book)
   '|
 =< link_to "Back", "javascript:history.back()"
+
+== render "comments/comments"
+
+p == render "comments/form", comment: @book.comments.new
