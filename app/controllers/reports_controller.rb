@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
   # GET /reports/1
   # GET /reports/1.json
   def show
-    @comments = @report.comments
+    @comments = @report.comments.page(params[:page])
   end
 
   # GET /reports/new
