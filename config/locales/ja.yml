@@ -9,6 +9,7 @@ ja:
     models:
       book: 本
       report: 日報
+      comment: コメント
     attributes:
       book:
         id: ID
@@ -23,6 +24,11 @@ ja:
         title: タイトル
         content: 内容
         created_at: 作成日時
+        updated_at: 更新日時
+      comment:
+        id: ID
+        content: 内容
+        created_at: コメント日時
         updated_at: 更新日時
   date:
     abbr_day_names:
