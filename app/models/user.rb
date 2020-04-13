@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one_attached :icon
   has_many :books
   has_many :reports
+  has_many :comments
   paginates_per 7
 
   has_many :followings
