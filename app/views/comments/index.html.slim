@@ -1,0 +1,14 @@
+h1 コメント一覧
+
+table
+  thead
+    tr
+      th コメント先
+      th = Comment.human_attribute_name(:content)
+
+  tbody
+    - @comments.each do |comment|
+      tr
+        td = comment.commentable.title
+        td = comment.content
+= paginate @comments
