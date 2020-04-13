@@ -9,6 +9,6 @@ table
   tbody
     - @comments.each do |comment|
       tr
-        td = comment.commentable.title
+        td = link_to comment.commentable.title, comment.commentable
         td = comment.content
 = paginate @comments
