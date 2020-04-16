@@ -9,9 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def follower_ids
-    current_user.followers.each_with_object([current_user.id]) do |follower, ids|
-      ids << follower.id
-    end
+    current_user.followers.pluck(:id) << current_user.id
   end
 
   protected
