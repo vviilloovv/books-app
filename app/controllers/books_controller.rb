@@ -8,7 +8,10 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.where(user_id: follower_ids).order(created_at: "DESC").page(params[:page])
+    @books = Book
+      .where(user_id: timeline_user_ids)
+      .order(created_at: "DESC")
+      .page(params[:page])
   end
 
   # GET /books/1

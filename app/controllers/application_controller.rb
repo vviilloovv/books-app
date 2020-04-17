@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path unless current_user
   end
 
-  def follower_ids
-    current_user.followers.pluck(:id) << current_user.id
+  def timeline_user_ids
+    [current_user.id] + current_user.followers.pluck(:id)
   end
 
   protected

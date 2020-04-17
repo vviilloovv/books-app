@@ -8,7 +8,10 @@ class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.where(user_id: follower_ids).order(created_at: "DESC").page(params[:page])
+    @reports = Report
+      .where(user_id: timeline_user_ids)
+      .order(created_at: "DESC")
+      .page(params[:page])
   end
 
   # GET /reports/1
