@@ -29,6 +29,10 @@ html
     p.navbar-text.pull-right
       => link_to "本一覧", books_path, class: "navbar-link"
       '|
+      =<> link_to "日報一覧", reports_path, class: "navbar-link"
+      '|
+      =<> link_to "コメント一覧", comments_path, class: "navbar-link"
+      '|
       =< link_to "ユーザ一覧", users_path, class: "navbar-link"
     - if notice
       p.alert.alert-success = notice

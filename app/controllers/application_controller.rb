@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_session_path unless current_user
   end
 
+  def timeline_user_ids
+    [current_user.id] + current_user.followers.pluck(:id)
+  end
+
   protected
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :postal_code, :address, :profile, :icon])

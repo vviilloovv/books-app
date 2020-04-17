@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-class Book < ApplicationRecord
-  has_one_attached :image
+class Report < ApplicationRecord
   belongs_to :user
   paginates_per 7
   has_many :comments, as: :commentable
