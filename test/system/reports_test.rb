@@ -67,4 +67,3 @@ class ReportsTest < ApplicationSystemTestCase
     assert_no_text "Alice repo"
   end
 end
-
