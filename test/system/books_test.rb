@@ -27,7 +27,7 @@ class BooksTest < ApplicationSystemTestCase
 
   test "詳細表示" do
     sign_in @alice
-    visit @book
+    visit book_path(@book)
 
     assert_text "Alice in Wonderland"
   end
