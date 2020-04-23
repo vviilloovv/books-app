@@ -5,7 +5,6 @@ require "application_system_test_case"
 class CommentsTest < ApplicationSystemTestCase
   def setup
     @alice = users(:alice)
-    @bob = users(:bob)
     @book_with_comments = books(:one)
     @book_without_comments = books(:two)
     @report_with_comments = reports(:one)
