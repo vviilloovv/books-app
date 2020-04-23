@@ -1,0 +1,19 @@
+to_book_by_alice:
+  content: "Book Alice"
+  user: alice
+  commentable: one(Book)
+
+to_book_by_bob:
+  content: "Book Bob"
+  user: bob
+  commentable: one(Book)
+
+to_report_by_alice:
+  content: "Report Alice"
+  user: alice
+  commentable: one(Report)
+
+to_report_by_bob:
+  content: "Report Bob"
+  user: bob
+  commentable: one(Report)
