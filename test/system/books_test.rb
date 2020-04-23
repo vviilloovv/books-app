@@ -10,7 +10,7 @@ class BooksTest < ApplicationSystemTestCase
 
   test "AliceはBobの投稿が一覧に表示される" do
     sign_in @alice
-    visit books_url
+    visit books_path
 
     assert_selector "h1", text: "Listing books"
     assert_text "Alice in Wonderland"
@@ -19,7 +19,7 @@ class BooksTest < ApplicationSystemTestCase
 
   test "BobにはAliceの投稿が一覧に表示されない" do
     sign_in users(:bob)
-    visit books_url
+    visit books_path
 
     assert_no_text "Alice in Wonderland"
     assert_text "Bob Book"
@@ -61,7 +61,7 @@ class BooksTest < ApplicationSystemTestCase
 
   test "削除" do
     sign_in @alice
-    visit books_url
+    visit books_path
     accept_alert do
       click_on "Destroy", match: :first
     end

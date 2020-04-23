@@ -10,7 +10,7 @@ class ReportsTest < ApplicationSystemTestCase
 
   test "AliceはBobの投稿が一覧に表示される" do
     sign_in @alice
-    visit reports_url
+    visit reports_path
 
     assert_selector "h1", text: "Listing reports"
     assert_text "Alice repo"
@@ -19,7 +19,7 @@ class ReportsTest < ApplicationSystemTestCase
 
   test "BobはAliceの投稿が一覧に表示されない" do
     sign_in users(:bob)
-    visit reports_url
+    visit reports_path
 
     assert_no_text "Alice repo"
     assert_text "Bob repo"
@@ -58,7 +58,7 @@ class ReportsTest < ApplicationSystemTestCase
 
   test "削除" do
     sign_in @alice
-    visit reports_url
+    visit reports_path
     accept_alert do
       click_on "Destroy", match: :first
     end
