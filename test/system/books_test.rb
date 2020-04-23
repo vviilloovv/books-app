@@ -5,11 +5,11 @@ require "application_system_test_case"
 class BooksTest < ApplicationSystemTestCase
   def setup
     @alice = users(:alice)
-    sign_in @alice
     @book = books(:one)
   end
 
-  test "一覧表示" do
+  test "AliceはBobの投稿が一覧に表示される" do
+    sign_in @alice
     visit books_url
 
     assert_selector "h1", text: "Listing books"
@@ -17,13 +17,23 @@ class BooksTest < ApplicationSystemTestCase
     assert_text "Bob Book"
   end
 
+  test "BobにはAliceの投稿が一覧に表示されない" do
+    sign_in users(:bob)
+    visit books_url
+
+    assert_no_text "Alice in Wonderland"
+    assert_text "Bob Book"
+  end
+
   test "詳細表示" do
+    sign_in @alice
     visit @book
 
     assert_text "Alice in Wonderland"
   end
 
   test "新規作成" do
+    sign_in @alice
     visit new_book_path
 
     fill_in "タイトル", with: "Neo Alice"
@@ -38,6 +48,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test "更新" do
+    sign_in @alice
     visit edit_book_path(@book)
 
     fill_in "タイトル", with: "不思議の国のアリス"
@@ -49,6 +60,7 @@ class BooksTest < ApplicationSystemTestCase
   end
 
   test "削除" do
+    sign_in @alice
     visit books_url
     accept_alert do
       click_on "Destroy", match: :first
