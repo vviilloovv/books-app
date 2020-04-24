@@ -59,6 +59,7 @@ class CommentsTest < ApplicationSystemTestCase
     fill_in "内容", with: "New Comment"
     click_button "登録する"
 
+    assert_selector "h1", text: "本の詳細"
     assert_text "Comment was successfully created."
     assert_text "New Comment"
   end
@@ -67,9 +68,12 @@ class CommentsTest < ApplicationSystemTestCase
     sign_in @alice
     visit edit_comment_path(comments(:to_book_by_alice))
 
+    assert_selector "h1", text: "コメント編集"
+
     fill_in "内容", with: "Update Comment"
     click_button "更新する"
 
+    assert_selector "h1", text: "本の詳細"
     assert_text "Comment was successfully updated."
   end
 
@@ -80,6 +84,7 @@ class CommentsTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
+    assert_selector "h1", text: "本の詳細"
     assert_text "Comment was successfully destroyed."
     assert_no_text "Book Alice"
     assert_text "Book Bob"

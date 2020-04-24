@@ -12,7 +12,7 @@ class ReportsTest < ApplicationSystemTestCase
     sign_in @alice
     visit reports_path
 
-    assert_selector "h1", text: "Listing reports"
+    assert_selector "h1", text: "日報一覧"
     assert_text "Alice repo"
     assert_text "Bob repo"
   end
@@ -21,6 +21,7 @@ class ReportsTest < ApplicationSystemTestCase
     sign_in users(:bob)
     visit reports_path
 
+    assert_selector "h1", text: "日報一覧"
     assert_no_text "Alice repo"
     assert_text "Bob repo"
   end
@@ -29,6 +30,7 @@ class ReportsTest < ApplicationSystemTestCase
     sign_in @alice
     visit report_path(@report)
 
+    assert_selector "h1", text: "日報の詳細"
     assert_text "Alice repo"
   end
 
@@ -36,10 +38,13 @@ class ReportsTest < ApplicationSystemTestCase
     sign_in @alice
     visit new_report_path
 
+    assert_selector "h1", text: "日報の新規登録"
+
     fill_in "タイトル", with: "Neo Alice"
     fill_in "内容", with: "Aliceの日報"
     click_button "登録する"
 
+    assert_selector "h1", text: "日報の詳細"
     assert_text "Report was successfully created."
     assert_text "Neo Alice"
     assert_text "Aliceの日報"
@@ -49,10 +54,13 @@ class ReportsTest < ApplicationSystemTestCase
     sign_in @alice
     visit edit_report_path(@report)
 
+    assert_selector "h1", text: "日報の編集"
+
     fill_in "タイトル", with: "update Alice"
     fill_in "内容", with: "更新された日報"
     click_button "更新する"
 
+    assert_selector "h1", text: "日報の詳細"
     assert_text "Report was successfully updated."
   end
 
@@ -63,6 +71,7 @@ class ReportsTest < ApplicationSystemTestCase
       click_on "Destroy", match: :first
     end
 
+    assert_selector "h1", text: "日報一覧"
     assert_text "Report was successfully destroyed."
     assert_no_text "Alice repo"
   end
