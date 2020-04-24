@@ -13,7 +13,7 @@ class User < ApplicationRecord
   paginates_per 7
 
   has_many :followings, dependent: :destroy
-  has_many :followers, through: :followings, source: :follow
+  has_many :followers, through: :followings, source: :follow, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
