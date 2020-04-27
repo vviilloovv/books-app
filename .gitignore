@@ -105,3 +105,6 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
+
+# Ignore test database binary files
+/db/test.sqlite3-*

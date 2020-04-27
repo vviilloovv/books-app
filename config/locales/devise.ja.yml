@@ -25,13 +25,13 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
-        name: ユーザ名
+        name: ユーザー名
         postal_code: 郵便番号
         address: 住所
         profile: 自己紹介
         icon: アイコン
     models:
-      user: ユーザ
+      user: ユーザー
   devise:
     confirmations:
       confirmed: アカウントを登録しました。
