@@ -107,5 +107,4 @@ yarn-debug.log*
 .env
 
 # Ignore test database binary files
-/db/test.sqlite3-0
-/db/test.sqlite3-1
+/db/test.sqlite3-*
